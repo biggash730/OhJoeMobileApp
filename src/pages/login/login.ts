@@ -1,5 +1,7 @@
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Component, trigger, state, style, transition, animate, keyframes } from '@angular/core';
+import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
+import { Http } from '@angular/http';
 //import { NavController } from 'ionic-angular';
 
 /**
@@ -13,63 +15,37 @@ import { Component, trigger, state, style, transition, animate, keyframes } from
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html',
-  animations: [
- 
-    //For the logo
-    trigger('flyInBottomSlow', [
-      state('in', style({
-        transform: 'translate3d(0,0,0)'
-      })),
-      transition('void => *', [
-        style({transform: 'translate3d(0,2000px,0'}),
-        animate('2000ms ease-in-out')
-      ])
-    ]),
- 
-    //For the background detail
-    trigger('flyInBottomFast', [
-      state('in', style({
-        transform: 'translate3d(0,0,0)'
-      })),
-      transition('void => *', [
-        style({transform: 'translate3d(0,2000px,0)'}),
-        animate('1000ms ease-in-out')
-      ])
-    ]),
- 
-    //For the login form
-    trigger('bounceInBottom', [
-      state('in', style({
-        transform: 'translate3d(0,0,0)'
-      })),
-      transition('void => *', [
-        animate('2000ms 200ms ease-in', keyframes([
-          style({transform: 'translate3d(0,2000px,0)', offset: 0}),
-          style({transform: 'translate3d(0,-20px,0)', offset: 0.9}),
-          style({transform: 'translate3d(0,0,0)', offset: 1}) 
-        ]))
-      ])
-    ]),
- 
-    //For login button
-    trigger('fadeIn', [
-      state('in', style({
-        opacity: 1
-      })),
-      transition('void => *', [
-        style({opacity: 0}),
-        animate('1000ms 2000ms ease-in')
-      ])
-    ])
-  ]
+  
 })
 export class LoginPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public http: Http, public navCtrl: NavController, public navParams: NavParams, public authService: AuthServiceProvider) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
   }
+
+  login(phone){
+
+    if (phone === null) {
+      //throw("Please enter a valid phone number");
+    } else {
+      this.authService.setKeyValue('PHONENUMBER',phone);
+      let data = this.http.get(this.authService.baseUrl+"account/login?phoneNumber="+phone)
+      .map(res => res.json())
+      .subscribe(data => {
+          console.log(data)
+            if(data.result == 1) 
+            {
+              //redirect to the verification page
+                
+            }
+
+        }, (error) => {
+            console.log(error);
+        });
+    }
+    }
 
 }
