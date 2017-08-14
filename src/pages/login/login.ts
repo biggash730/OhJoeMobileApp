@@ -1,8 +1,8 @@
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { Component, trigger, state, style, transition, animate, keyframes } from '@angular/core';
-import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
+import { IonicPage, NavController, NavParams,AlertController, LoadingController } from 'ionic-angular';
+import { Component, trigger, state, style, transition, animate } from '@angular/core';
+import { UserDataProvider } from '../../providers/user-data';
 import { Http } from '@angular/http';
-//import { NavController } from 'ionic-angular';
+import { TabsPage } from '../../pages/tabs/tabs';
 
 /**
  * Generated class for the LoginPage page.
@@ -18,34 +18,30 @@ import { Http } from '@angular/http';
   
 })
 export class LoginPage {
+  countries:any[]
 
-  constructor(public http: Http, public navCtrl: NavController, public navParams: NavParams, public authService: AuthServiceProvider) {
+  constructor(public http: Http, public navCtrl: NavController, public navParams: NavParams, public userService: UserDataProvider, public alertCtrl: AlertController,public loadingCtrl:LoadingController) {
+    
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
   }
 
-  login(phone){
+  login(provider: string) {
+      this.userService.login(provider);
+      this.navCtrl.push(TabsPage);
+  }
 
-    if (phone === null) {
-      //throw("Please enter a valid phone number");
-    } else {
-      this.authService.setKeyValue('PHONENUMBER',phone);
-      let data = this.http.get(this.authService.baseUrl+"account/login?phoneNumber="+phone)
-      .map(res => res.json())
-      .subscribe(data => {
-          console.log(data)
-            if(data.result == 1) 
-            {
-              //redirect to the verification page
-                
-            }
+  loginWithFb(){
+    this.userService.login("facebook");
+    this.navCtrl.push(TabsPage);
+    
+  }
 
-        }, (error) => {
-            console.log(error);
-        });
-    }
-    }
-
+  loginWithGl(){
+    this.userService.login("facebook");
+    this.navCtrl.push(TabsPage);
+    
+  }
 }
