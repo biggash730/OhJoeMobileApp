@@ -101,4 +101,24 @@ export class LoginPage {
 
     }
 
-}*/
+}
+  
+/*login(provider: string) {
+      this.userService.login(provider);
+      this.navCtrl.push(TabsPage);
+  }
+
+  loginWithFb(){
+    this.userService.login("facebook");
+    this.navCtrl.push(TabsPage);
+    
+  }
+
+  loginWithGl(){
+    this.userService.login("facebook");
+    this.navCtrl.push(TabsPage);
+    
+  }
+
+
+*/

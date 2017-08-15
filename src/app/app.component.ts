@@ -8,6 +8,7 @@ import { LoginPage } from '../pages/login/login';
 import { UserDataProvider } from '../providers/user-data';
 
 
+
 @Component({
   templateUrl: 'app.html'
 })
@@ -22,22 +23,14 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
       splashScreen.hide();
-
+      
       this.userService.hasLoggedIn().then((v) => {
-        if(this.userService.hasLoggedIn()) {
+        if(v) {
           this.rootPage = TabsPage;
         } else {
           this.rootPage = LoginPage;
         }
-
       });
-
-      /*if(this.userService.hasLoggedIn()) {
-        this.rootPage = TabsPage;
-      } else {
-        this.rootPage = LoginPage;
-      }*/
-      this.client = userService.client;     
 
     });
   }

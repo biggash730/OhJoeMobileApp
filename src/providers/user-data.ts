@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Events } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
-//import { Http } from '@angular/http';
+import { Http, RequestOptions, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
-import { WindowsAzure } from 'azure-mobile-apps-client';
+//import { WindowsAzure } from 'azure-mobile-apps-client';
 //import * as WindowsAzure from "azure-mobile-apps-client";
 /*
   Generated class for the UserDataProvider provider.
@@ -11,7 +11,7 @@ import { WindowsAzure } from 'azure-mobile-apps-client';
   See https://angular.io/docs/ts/latest/guide/dependency-injection.html
   for more info on providers and Angular DI.
 */
-
+declare var WindowsAzure: any;
 
 
 @Injectable()
@@ -23,10 +23,21 @@ export class UserDataProvider {
   userid: string;
   remoteFavsTable: any;
   loggedIn: boolean = false;
+  baseUrl: string;
+  requestOptions: RequestOptions;
+  headers: Headers = new Headers;
 
-  constructor(public events: Events, private storage: Storage, private windowsAzure: WindowsAzure) {
-    this.client = this.windowsAzure.MobileServiceClient('https://ohjoe.azurewebsites.net');;
-    console.log(this.client)
+  constructor(public events: Events, private storage: Storage) {
+      //this.client = new WindowsAzure.MobileServiceClient("https://ohjoe.azurewebsites.net");
+      //window.alert("MobileServiceClient instance: " + this.client);
+      //console.log(this.client)
+      //this.baseUrl = "https://ohjoe.azurewebsites.net/api";
+      this.baseUrl = "http://localhost:50776/api/";
+
+        this.headers.set('Authorization', "");
+        this.headers.append('ZUMO-API-VERSION', '2.0.0');
+        this.headers.append('Content-type', 'application/json')
+        this.requestOptions = new RequestOptions({headers: this.headers});   
   }
 
   hasFavorite(sessionName) {
@@ -82,7 +93,8 @@ export class UserDataProvider {
   // return a promise
   hasLoggedIn() {
     return this.storage.get(this.HAS_LOGGED_IN).then((value) => {
-      return value;
+        if(value && value == true) return true;
+        else return false;
     });
   }
 
