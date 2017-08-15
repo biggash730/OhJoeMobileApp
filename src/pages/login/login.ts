@@ -20,19 +20,17 @@ import { BackendProvider } from '../../providers/backend/backend';
 })
 export class LoginPage {
   countries:any[]
-  data: any
+  phoneNumber:string;
+  countryId:string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public userService: UserDataProvider, public alertCtrl: AlertController,public loadingCtrl:LoadingController, public backendService: BackendProvider) {
     
   }
 
   ionViewDidLoad() {
-    //console.log('ionViewDidLoad LoginPage');
-    this.data = {}
     this.countries = []
     this.backendService.getCountries().subscribe(data => {
-          console.log(data)
-            if(data.data.length > 0) 
+          if(data.data.length > 0) 
             {
               this.countries =  data.data
             }
@@ -42,13 +40,12 @@ export class LoginPage {
     
   }
 
-  login(data){
+  login(phoneNumber, countryId){
     let loader = this.loadingCtrl.create({
         content: "Registering your account..."
       });
       loader.present();
-    if (data.phoneNumber === null) {
-      //throw("Please enter a valid phone number");
+    if (!phoneNumber) {
       let alert = this.alertCtrl.create({
           title:'Phone Number Error', 
           subTitle:'Please enter a valid phone number',
@@ -58,7 +55,7 @@ export class LoginPage {
         loader.dismissAll();
         return;
     }
-    else if (data.countryId === null) {
+    else if (!countryId) {
       let alert = this.alertCtrl.create({
           title:'Country Error', 
           subTitle:'Please select your country',
@@ -69,8 +66,12 @@ export class LoginPage {
         return;
     }
     else {
-      this.userService.setKeyValue('PHONENUMBER',data.phoneNumber);
-      this.backendService.login(data).subscribe(data => {
+      this.userService.setKeyValue('PHONENUMBER',phoneNumber);
+      var obj = {
+        phoneNumber: phoneNumber, countryId: countryId
+      }
+      console.log(obj)
+      /*this.backendService.login(obj).subscribe(data => {
           console.log(data)
           loader.dismissAll();
             if(data.success) 
@@ -80,7 +81,7 @@ export class LoginPage {
         }, (error) => {
             loader.dismissAll();
             console.log(error);
-      });
+      });*/
       
     }
     }

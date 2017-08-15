@@ -10,20 +10,18 @@
         <ion-row>
             <ion-col>
                 <ion-list inset>
-                    <form (ngSubmit)="login(data)">
-                        <ion-item>
-                            <ion-label>Country</ion-label>
-                            <ion-select [(ngModel)]="data.countryId">
-                                <ion-option *ngFor="let c of countries" [value]="c.id">{{c.title}}</ion-option>
-                            </ion-select>
-                        </ion-item>
+                    <ion-item>
+                        <ion-label>Country</ion-label>
+                        <ion-select [(ngModel)]="countryId">
+                            <ion-option *ngFor="let c of countries" [value]="c.id">{{c.title}}</ion-option>
+                        </ion-select>
+                    </ion-item>
 
-                        <ion-item>
-                            <ion-label>Phone Number</ion-label>
-                            <ion-input type="tel" [(ngModel)]="data.phoneNumber" pla></ion-input>
-                        </ion-item>
-                        <button ion-button type="submit" block class="login-button">Login</button>
-                    </form>
+                    <ion-item>
+                        <ion-label>Phone Number</ion-label>
+                        <ion-input type="tel" [(ngModel)]="phoneNumber" pla></ion-input>
+                    </ion-item>
+                    <button ion-button type="submit" block class="login-button" (click)="login()">Login</button>
                 </ion-list>
             </ion-col>
         </ion-row>

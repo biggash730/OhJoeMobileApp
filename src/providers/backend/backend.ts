@@ -13,7 +13,7 @@ import { UserDataProvider } from '../../providers/user-data';
 export class BackendProvider {
 
   constructor(public http: Http,public userService: UserDataProvider) {
-    console.log('Hello BackendProvider Provider');
+    //console.log('Hello BackendProvider Provider');
   }
 
   getCountries(){
