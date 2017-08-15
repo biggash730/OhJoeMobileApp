@@ -40,37 +40,36 @@ export class LoginPage {
     
   }
 
-  login(phoneNumber, countryId){
-    let loader = this.loadingCtrl.create({
-        content: "Registering your account..."
-      });
-      loader.present();
-    if (!phoneNumber) {
+  login(){
+    var obj = {
+        phoneNumber: this.phoneNumber, countryId: this.countryId
+      }
+      console.log(obj)
+    if (!obj.phoneNumber) {
       let alert = this.alertCtrl.create({
           title:'Phone Number Error', 
           subTitle:'Please enter a valid phone number',
           buttons:['OK']
         });
-        alert.present();
-        loader.dismissAll();
+        alert.present();        
         return;
     }
-    else if (!countryId) {
+    else if (!obj.countryId) {
       let alert = this.alertCtrl.create({
           title:'Country Error', 
           subTitle:'Please select your country',
           buttons:['OK']
         });
         alert.present();
-        loader.dismissAll();
         return;
     }
     else {
-      this.userService.setKeyValue('PHONENUMBER',phoneNumber);
-      var obj = {
-        phoneNumber: phoneNumber, countryId: countryId
-      }
-      console.log(obj)
+      let loader = this.loadingCtrl.create({
+        content: "Registering your account..."
+      });
+      loader.present();
+      this.userService.setKeyValue('PHONENUMBER',obj.phoneNumber);      
+
       /*this.backendService.login(obj).subscribe(data => {
           console.log(data)
           loader.dismissAll();
@@ -82,7 +81,7 @@ export class LoginPage {
             loader.dismissAll();
             console.log(error);
       });*/
-      
+      loader.dismissAll();
     }
     }
 }

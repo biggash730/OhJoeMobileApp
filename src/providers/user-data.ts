@@ -182,7 +182,10 @@ export class UserDataProvider {
     });
   }
   public setKeyValue(key,value) {
-    this.storage.set(key, JSON.stringify(value));
+      this.storage.ready().then(() => {
+          this.storage.set(key, JSON.stringify(value));
+});
+    
   }
 
   public getKeyValue(key) : any {
