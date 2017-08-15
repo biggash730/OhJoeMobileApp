@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Events } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
-import { Http, RequestOptions, Headers } from '@angular/http';
+import { RequestOptions, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
 //import { WindowsAzure } from 'azure-mobile-apps-client';
 //import * as WindowsAzure from "azure-mobile-apps-client";
@@ -11,13 +11,17 @@ import 'rxjs/add/operator/map';
   See https://angular.io/docs/ts/latest/guide/dependency-injection.html
   for more info on providers and Angular DI.
 */
-declare var WindowsAzure: any;
+//declare var WindowsAzure: any;
 
 
 @Injectable()
 export class UserDataProvider {
   _favorites = [];
-  HAS_LOGGED_IN = 'hasLoggedIn';
+  HAS_LOGGED_IN = 'HASLOGGEDIN';
+  CURRENT_USER = 'CURRENTUSER';
+  USERNAME = 'USERNAME';
+  PAGE = 'PAGE';
+  PHONENUMBER = 'PHONENUMBER';
 
   client: any;
   userid: string;
@@ -28,17 +32,21 @@ export class UserDataProvider {
   headers: Headers = new Headers;
   phoneNumber: string;
 
-  constructor(public events: Events, private storage: Storage) {
+  constructor(public events: Events, public storage: Storage) {
       //this.client = new WindowsAzure.MobileServiceClient("https://ohjoe.azurewebsites.net");
       //window.alert("MobileServiceClient instance: " + this.client);
       //console.log(this.client)
-      //this.baseUrl = "https://ohjoe.azurewebsites.net/api";
-      this.baseUrl = "http://localhost:50776/api/";
+      this.baseUrl = "https://ohjoe.azurewebsites.net/api";
+      //this.baseUrl = "http://localhost:50776/api/";
 
         this.headers.set('Authorization', "");
         this.headers.append('ZUMO-API-VERSION', '2.0.0');
         this.headers.append('Content-type', 'application/json')
         this.requestOptions = new RequestOptions({headers: this.headers});   
+
+        storage.ready().then(() => {
+  
+        })
   }
 
   hasFavorite(sessionName) {
@@ -81,23 +89,10 @@ export class UserDataProvider {
       this.events.publish('user:logout');
   }
 
-  setUsername(username) {
-    this.storage.set('username', JSON.stringify(username));
-  }
-
-  getUsername() {  
-    return this.storage.get('username').then((value) => {
-      return JSON.stringify(value);
-    });
-  }
+  
 
   // return a promise
-  hasLoggedIn() {
-    return this.storage.get(this.HAS_LOGGED_IN).then((value) => {
-        if(value && value == true) return true;
-        else return false;
-    });
-  }
+  
 
   saveToLocalStorage() {
       if (this._favorites.length > 0) {
@@ -169,31 +164,68 @@ export class UserDataProvider {
           console.log('clear favs');          
       }
       this.events.publish('favs:sync');
+  }
 
+  hasLoggedIn() {
+    return this.storage.get(this.HAS_LOGGED_IN).then((value) => {
+        if(value && value == true) return true;
+        else return false;
+    });
   }
 
 
   public setPage(page) {
-    this.storage.set('page', JSON.stringify(page));
+    this.storage.set(this.PAGE, JSON.stringify(page));
   }
 
   public getPage() : any {
-    return this.storage.get('page').then((val) => {
+    return this.storage.get(this.PAGE).then((val) => {
       return JSON.parse(val)
     });
   }
+  public setUsername(username) {
+    this.storage.set(this.USERNAME, JSON.stringify(username));
+  }
+
+  public getUsername() {  
+    return this.storage.get(this.USERNAME).then((value) => {
+      return JSON.stringify(value);
+    });
+  }
   public setPhoneNumber(phone) {
+      this.storage.set(this.PHONENUMBER, JSON.stringify(phone));
     this.phoneNumber = phone;
   }
   public setKeyValue(key,value) {
-      this.storage.ready().then(() => {
-          this.storage.set(key, JSON.stringify(value));
-    });
-    
+      this.storage.set(key, JSON.stringify(value));    
   }
 
   public getKeyValue(key) : any {
     return this.storage.get(key).then((val) => {
+      return JSON.parse(val)
+    });
+  }
+
+  public getPhoneNumber() : any {
+    return this.storage.get(this.PHONENUMBER).then((val) => {
+      return JSON.parse(val)
+    });
+  }
+
+  public removeKeyValue(key) {
+      this.storage.remove(key);    
+  }
+
+  public setLoggedIn() {
+    this.storage.set(this.HAS_LOGGED_IN, JSON.stringify(true));
+  }
+
+  public setCurrentUser(user) {
+    this.storage.set(this.CURRENT_USER, JSON.stringify(user));
+  }
+
+  public getCurrentUser() : any {
+    return this.storage.get(this.CURRENT_USER).then((val) => {
       return JSON.parse(val)
     });
   }

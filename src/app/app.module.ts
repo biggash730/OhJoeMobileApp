@@ -33,10 +33,7 @@ import { BackendProvider } from '../providers/backend/backend';
     BrowserModule,
     HttpModule,
     IonicModule.forRoot(MyApp),
-    IonicStorageModule.forRoot({
-     name: '__mydb',
-     driverOrder: ['indexeddb', 'sqlite', 'websql']
-   })
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [

@@ -26,7 +26,7 @@ export class VerifyPage {
 
   verify(){
     var obj = {
-        phoneNumber: this.userService.phoneNumber, code: this.code
+        phoneNumber: this.userService.getPhoneNumber, code: this.code
       }
       //console.log(obj)
     if (!obj.code) {
@@ -50,6 +50,9 @@ export class VerifyPage {
             if(data.success) 
             {
               //save the user details and set that login is successful
+              this.userService.setUsername(data.data.name);
+              this.userService.setLoggedIn()
+              this.userService.setCurrentUser(data.data)
               //redirect to the verification page
               this.navCtrl.push(TabsPage);
             }

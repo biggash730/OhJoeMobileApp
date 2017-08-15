@@ -25,6 +25,7 @@ export class LoginPage {
   countryId:string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public userService: UserDataProvider, public alertCtrl: AlertController,public loadingCtrl:LoadingController, public backendService: BackendProvider) {
+    userService.setPage("Login")
     
   }
 
@@ -76,7 +77,7 @@ export class LoginPage {
           loader.dismissAll();
             if(data.success) 
             {
-              this.userService.setPhoneNumber(obj.phoneNumber)
+              this.userService.setPhoneNumber(data.data)
               //redirect to the verification page
               this.navCtrl.push(VerifyPage);
             }
