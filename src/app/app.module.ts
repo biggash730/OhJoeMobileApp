@@ -12,6 +12,7 @@ import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 import { TabsPage } from '../pages/tabs/tabs';
+import { VerifyPage } from '../pages/verify/verify';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -21,11 +22,12 @@ import { BackendProvider } from '../providers/backend/backend';
 @NgModule({
   declarations: [
     MyApp,
+    LoginPage,
+    VerifyPage,
+    TabsPage,
     AboutPage,
     ContactPage,
-    HomePage,
-    LoginPage,
-    TabsPage
+    HomePage
   ],
   imports: [
     BrowserModule,
@@ -39,11 +41,12 @@ import { BackendProvider } from '../providers/backend/backend';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
+    LoginPage,
+    VerifyPage,
+    TabsPage,
     AboutPage,
     ContactPage,
-    HomePage,
-    LoginPage,
-    TabsPage
+    HomePage
   ],
   providers: [
     StatusBar,

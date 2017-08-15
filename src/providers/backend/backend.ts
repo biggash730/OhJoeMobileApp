@@ -21,8 +21,13 @@ export class BackendProvider {
       .map(res => res.json());    
   }
 
-  login(object){
-      return this.http.post(this.userService.baseUrl+"accounts/login", {headers: this.userService.headers})
+  login(obj){
+      return this.http.post(this.userService.baseUrl+"login", obj, {headers: this.userService.headers})
+      .map(res => res.json());    
+  }
+
+  verify(obj){
+      return this.http.post(this.userService.baseUrl+"verify", obj, {headers: this.userService.headers})
       .map(res => res.json());    
   }
 

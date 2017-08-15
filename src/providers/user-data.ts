@@ -26,6 +26,7 @@ export class UserDataProvider {
   baseUrl: string;
   requestOptions: RequestOptions;
   headers: Headers = new Headers;
+  phoneNumber: string;
 
   constructor(public events: Events, private storage: Storage) {
       //this.client = new WindowsAzure.MobileServiceClient("https://ohjoe.azurewebsites.net");
@@ -180,6 +181,9 @@ export class UserDataProvider {
     return this.storage.get('page').then((val) => {
       return JSON.parse(val)
     });
+  }
+  public setPhoneNumber(phone) {
+    this.phoneNumber = phone;
   }
   public setKeyValue(key,value) {
       this.storage.ready().then(() => {

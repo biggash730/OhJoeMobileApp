@@ -1,9 +1,10 @@
 import { IonicPage, NavController, NavParams,AlertController, LoadingController } from 'ionic-angular';
-import { Component, trigger, state, style, transition, animate } from '@angular/core';
+import { Component} from '@angular/core';
 import { UserDataProvider } from '../../providers/user-data';
 //import { Http } from '@angular/http';
-import { TabsPage } from '../../pages/tabs/tabs';
+//import { TabsPage } from '../../pages/tabs/tabs';
 import { BackendProvider } from '../../providers/backend/backend';
+import { VerifyPage } from '../../pages/verify/verify';
 
 /**
  * Generated class for the LoginPage page.
@@ -65,7 +66,7 @@ export class LoginPage {
     }
     else {
       let loader = this.loadingCtrl.create({
-        content: "Registering your account..."
+        content: "Hold on tight..."
       });
       loader.present();
       //this.userService.setKeyValue('PHONENUMBER',obj.phoneNumber);      
@@ -75,7 +76,9 @@ export class LoginPage {
           loader.dismissAll();
             if(data.success) 
             {
+              this.userService.setPhoneNumber(obj.phoneNumber)
               //redirect to the verification page
+              this.navCtrl.push(VerifyPage);
             }
         }, (error) => {
             loader.dismissAll();
