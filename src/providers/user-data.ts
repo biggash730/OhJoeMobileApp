@@ -81,12 +81,12 @@ export class UserDataProvider {
   }
 
   setUsername(username) {
-    this.storage.set('username', username);
+    this.storage.set('username', JSON.stringify(username));
   }
 
   getUsername() {  
     return this.storage.get('username').then((value) => {
-      return value;
+      return JSON.stringify(value);
     });
   }
 
@@ -173,21 +173,21 @@ export class UserDataProvider {
 
 
   public setPage(page) {
-    this.storage.set('page', page);
+    this.storage.set('page', JSON.stringify(page));
   }
 
   public getPage() : any {
     return this.storage.get('page').then((val) => {
-      return val
+      return JSON.parse(val)
     });
   }
   public setKeyValue(key,value) {
-    this.storage.set(key, value);
+    this.storage.set(key, JSON.stringify(value));
   }
 
   public getKeyValue(key) : any {
     return this.storage.get(key).then((val) => {
-      return val
+      return JSON.parse(val)
     });
   }
 
