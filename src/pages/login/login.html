@@ -7,35 +7,25 @@
                 <img src="assets/images/logo200.png" />
             </ion-col>
         </ion-row>
-
         <ion-row>
             <ion-col>
                 <ion-list inset>
+                    <form (ngSubmit)="login(data)">
+                        <ion-item>
+                            <ion-label>Country</ion-label>
+                            <ion-select [(ngModel)]="data.countryId">
+                                <ion-option *ngFor="let c of countries" [value]="c.id">{{c.title}}</ion-option>
+                            </ion-select>
+                        </ion-item>
 
-                    <ion-item>
-                        <ion-label>Country</ion-label>
-                        <ion-select [(ngModel)]="countryId">
-                            <ion-option *ngFor="let c of countries" [value]="c.id">{{c.title}}</ion-option>
-                        </ion-select>
-                    </ion-item>
-
-                    <ion-item>
-                        <ion-label>Phone Number</ion-label>
-                        <ion-input type="tel" [(ngModel)]="phoneNumber"></ion-input>
-                    </ion-item>
-
+                        <ion-item>
+                            <ion-label>Phone Number</ion-label>
+                            <ion-input type="tel" [(ngModel)]="data.phoneNumber" pla></ion-input>
+                        </ion-item>
+                        <button ion-button type="submit" block class="login-button">Login</button>
+                    </form>
                 </ion-list>
             </ion-col>
         </ion-row>
-
-        <ion-row>
-            <ion-col>
-                <button ion-button class="login-button">Login</button>
-            </ion-col>
-        </ion-row>
-
     </div>
-
-
-
 </ion-content>
