@@ -79,6 +79,12 @@ export class LoginPage {
             {
               this.userService.setPhoneNumber(data.data)
               //redirect to the verification page
+              let alert = this.alertCtrl.create({
+                title:'Login Successful', 
+                subTitle:data.message,
+                buttons:['OK']
+              });
+              alert.present();
               this.navCtrl.push(VerifyPage);
             }
         }, (error) => {

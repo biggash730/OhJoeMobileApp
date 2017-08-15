@@ -14,21 +14,27 @@ import { TabsPage } from '../../pages/tabs/tabs';
 })
 export class VerifyPage {
   code:string
+  phoneNumber: string
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public userService: UserDataProvider, public alertCtrl: AlertController,public loadingCtrl:LoadingController, public backendService: BackendProvider) {
     
   }
 
   ionViewDidLoad() {
-    
+    this.userService.getPhoneNumber().then((val) => {
+      console.log(val)
+      this.phoneNumber = val
+    });
     
   }
 
   verify(){
+    
+
     var obj = {
-        phoneNumber: this.userService.getPhoneNumber, code: this.code
+        phoneNumber: this.phoneNumber, code: this.code
       }
-      //console.log(obj)
+      console.log(obj)
     if (!obj.code) {
       let alert = this.alertCtrl.create({
           title:'Verification Error', 
@@ -49,6 +55,12 @@ export class VerifyPage {
           loader.dismissAll();
             if(data.success) 
             {
+              let alert = this.alertCtrl.create({
+                title:'Verification Successful', 
+                subTitle:data.message,
+                buttons:['OK']
+              });
+              alert.present();
               //save the user details and set that login is successful
               //this.userService.setUsername(data.data.name);
               this.userService.setLoggedIn()
@@ -56,6 +68,14 @@ export class VerifyPage {
               this.userService.setToken(data.data.token)
               //redirect to the verification page
               this.navCtrl.push(TabsPage);
+            }
+            else{
+              let alert = this.alertCtrl.create({
+                title:'Verification Failed', 
+                subTitle:data.message,
+                buttons:['OK']
+              });
+              alert.present();
             }
         }, (error) => {
             loader.dismissAll();
