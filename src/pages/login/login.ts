@@ -68,9 +68,9 @@ export class LoginPage {
         content: "Registering your account..."
       });
       loader.present();
-      this.userService.setKeyValue('PHONENUMBER',obj.phoneNumber);      
+      //this.userService.setKeyValue('PHONENUMBER',obj.phoneNumber);      
 
-      /*this.backendService.login(obj).subscribe(data => {
+      this.backendService.login(obj).subscribe(data => {
           console.log(data)
           loader.dismissAll();
             if(data.success) 
@@ -80,7 +80,7 @@ export class LoginPage {
         }, (error) => {
             loader.dismissAll();
             console.log(error);
-      });*/
+      });
       loader.dismissAll();
     }
     }
