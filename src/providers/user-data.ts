@@ -22,6 +22,7 @@ export class UserDataProvider {
   USERNAME = 'USERNAME';
   PAGE = 'PAGE';
   PHONENUMBER = 'PHONENUMBER';
+  TOKEN = 'TOKEN';
 
   client: any;
   userid: string;
@@ -36,7 +37,7 @@ export class UserDataProvider {
       //this.client = new WindowsAzure.MobileServiceClient("https://ohjoe.azurewebsites.net");
       //window.alert("MobileServiceClient instance: " + this.client);
       //console.log(this.client)
-      this.baseUrl = "https://ohjoe.azurewebsites.net/api";
+      this.baseUrl = "https://ohjoe.azurewebsites.net/api/";
       //this.baseUrl = "http://localhost:50776/api/";
 
         this.headers.set('Authorization', "");
@@ -226,6 +227,16 @@ export class UserDataProvider {
 
   public getCurrentUser() : any {
     return this.storage.get(this.CURRENT_USER).then((val) => {
+      return JSON.parse(val)
+    });
+  }
+
+  public setToken(token) {
+    this.storage.set(this.TOKEN, JSON.stringify(token));
+  }
+
+  public getToken() : any {
+    return this.storage.get(this.TOKEN).then((val) => {
       return JSON.parse(val)
     });
   }
