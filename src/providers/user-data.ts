@@ -181,9 +181,10 @@ export class UserDataProvider {
 
   public getPage() : any {
     return this.storage.get(this.PAGE).then((val) => {
-      return JSON.parse(val)
+        return JSON.parse(val)
     });
   }
+    
   public setUsername(username) {
     this.storage.set(this.USERNAME, JSON.stringify(username));
   }

@@ -1,6 +1,7 @@
 import { IonicPage, NavController, NavParams,AlertController, LoadingController } from 'ionic-angular';
 import { Component} from '@angular/core';
 import { UserDataProvider } from '../../providers/user-data';
+import { Storage } from '@ionic/storage';
 //import { Http } from '@angular/http';
 //import { TabsPage } from '../../pages/tabs/tabs';
 import { BackendProvider } from '../../providers/backend/backend';
@@ -16,15 +17,16 @@ export class VerifyPage {
   code:string
   phoneNumber: string
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public userService: UserDataProvider, public alertCtrl: AlertController,public loadingCtrl:LoadingController, public backendService: BackendProvider) {
-    
+  constructor(public navCtrl: NavController, public navParams: NavParams, public userService: UserDataProvider, public alertCtrl: AlertController,public loadingCtrl:LoadingController, public backendService: BackendProvider, public storage: Storage) {
+    userService.setPage("Verify")
   }
 
   ionViewDidLoad() {
-    this.userService.getPhoneNumber().then((val) => {
+    this.storage.get(this.userService.PHONENUMBER).then((val) => {
       console.log(val)
       this.phoneNumber = val
     });
+    
     
   }
 

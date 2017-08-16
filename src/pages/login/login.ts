@@ -26,10 +26,6 @@ export class LoginPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public userService: UserDataProvider, public alertCtrl: AlertController,public loadingCtrl:LoadingController, public backendService: BackendProvider) {
     userService.setPage("Login")
-
-    var page = userService.getPage()
-    console.log(page)
-    
   }
 
   ionViewDidLoad() {

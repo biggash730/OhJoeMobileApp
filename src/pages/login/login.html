@@ -10,6 +10,11 @@
         <ion-row>
             <ion-col>
                 <ion-list inset>
+                    <h1 style="color: #010203;font-weight: bold;">OhJoe Setup</h1>
+                    <br/>
+                    <p style="color: #f4f4f4;font-weight: 400;">OhJoe will will send an SMS message to verify your phone number. Select your home country and phone number
+                    </p>
+                    <br/>
                     <ion-item>
                         <ion-label>Select Country</ion-label>
                         <ion-select [(ngModel)]="countryId">
@@ -17,11 +22,10 @@
                         </ion-select>
                     </ion-item>
                     <ion-item>
-                        <ion-label>Phone Number</ion-label>
                         <ion-select [(ngModel)]="countryId" disabled>
                             <ion-option *ngFor="let c of countries" [value]="c.id">{{c.code}}</ion-option>
                         </ion-select>
-                        <ion-input type="tel" [(ngModel)]="phoneNumber" placeholder="207985828"></ion-input>
+                        <ion-input type="tel" [(ngModel)]="phoneNumber" placeholder="your phone number"></ion-input>
                     </ion-item>
                     <br/><br/>
                     <button ion-button type="submit" block class="login-button" (click)="login()">Enter</button>
