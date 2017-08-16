@@ -37,8 +37,8 @@ export class UserDataProvider {
       //this.client = new WindowsAzure.MobileServiceClient("https://ohjoe.azurewebsites.net");
       //window.alert("MobileServiceClient instance: " + this.client);
       //console.log(this.client)
-      this.baseUrl = "https://ohjoe.azurewebsites.net/api/";
-      //this.baseUrl = "http://localhost:50776/api/";
+      //this.baseUrl = "https://ohjoe.azurewebsites.net/api/";
+      this.baseUrl = "http://localhost:50776/api/";
 
         this.headers.set('Authorization', "");
         this.headers.append('ZUMO-API-VERSION', '2.0.0');
@@ -191,7 +191,7 @@ export class UserDataProvider {
 
   public getUsername() {  
     return this.storage.get(this.USERNAME).then((value) => {
-      return JSON.stringify(value);
+      return JSON.parse(value);
     });
   }
   public setPhoneNumber(phone) {
@@ -199,7 +199,7 @@ export class UserDataProvider {
     this.phoneNumber = phone;
   }
   public setKeyValue(key,value) {
-      this.storage.set(key, JSON.stringify(value));    
+      this.storage.set(key, JSON.parse(value));    
   }
 
   public getKeyValue(key) : any {

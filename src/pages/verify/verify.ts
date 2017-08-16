@@ -24,9 +24,8 @@ export class VerifyPage {
   ionViewDidLoad() {
     this.storage.get(this.userService.PHONENUMBER).then((val) => {
       console.log(val)
-      this.phoneNumber = val
-    });
-    
+      this.phoneNumber = JSON.parse(val)
+    });   
     
   }
 

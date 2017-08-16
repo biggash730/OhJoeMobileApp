@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { Storage } from '@ionic/storage';
 import { TabsPage } from '../pages/tabs/tabs';
 import { IntroPage } from '../pages/intro/intro';
 //import { VerifyPage } from '../pages/verify/verify';
@@ -17,7 +18,7 @@ export class MyApp {
   rootPage;
   client  
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, public userService: UserDataProvider) {
+  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, public userService: UserDataProvider, public storage: Storage) {
     platform.ready().then(() => {
       //var self = this
       // Okay, so the platform is ready and our plugins are available.
@@ -25,8 +26,9 @@ export class MyApp {
       statusBar.styleDefault();
       splashScreen.hide();
       
-      this.userService.hasLoggedIn().then((v) => {
-        if(v) {
+      this.storage.get(this.userService.HAS_LOGGED_IN).then((val) => {
+      var res = JSON.parse(val);
+        if(res) {
           this.rootPage = TabsPage;
         } else {
           this.rootPage = IntroPage;
