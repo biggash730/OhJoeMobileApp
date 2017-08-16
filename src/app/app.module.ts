@@ -13,6 +13,8 @@ import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 import { TabsPage } from '../pages/tabs/tabs';
 import { VerifyPage } from '../pages/verify/verify';
+import { IntroPage } from '../pages/intro/intro';
+import { TermsPage } from '../pages/terms/terms';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -22,6 +24,8 @@ import { BackendProvider } from '../providers/backend/backend';
 @NgModule({
   declarations: [
     MyApp,
+    IntroPage,
+    TermsPage,
     LoginPage,
     VerifyPage,
     TabsPage,
@@ -38,6 +42,8 @@ import { BackendProvider } from '../providers/backend/backend';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
+    IntroPage,
+    TermsPage,
     LoginPage,
     VerifyPage,
     TabsPage,
