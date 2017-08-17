@@ -7,24 +7,43 @@
 <ion-header>
 
     <ion-navbar>
-        <ion-title>My Events</ion-title>
+        <ion-title>Featured Events</ion-title>
     </ion-navbar>
 
 </ion-header>
 
 
 <ion-content class="card-background-page">
-
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles" refreshingText="Refreshing...">
+        </ion-refresher-content>
+    </ion-refresher>
+    <ion-searchbar primary [(ngModel)]="query" (ionInput)="search()" placeholder="Search Events">
+    </ion-searchbar>
     <ion-card>
         <img src="assets/img/card-saopaolo.png" />
-        <div class="card-title">São Paulo</div>
-        <div class="card-subtitle">41 Listings</div>
+        <ion-fab right top>
+            <button ion-fab mini color="light">
+        <ion-icon name="eye" color="red"></ion-icon>
+      </button>
+        </ion-fab>
+        <div class="card-title">
+            Tidal Rave
+        </div>
+        <div class="card-subtitle">Biggest Beach Party In Gh</div>
+        <ion-item>
+            <h2>Saturday, 10 October, 2017</h2>
+            <p>Time: <span>10:00 am</span></p>
+        </ion-item>
     </ion-card>
 
     <ion-card>
         <img src="assets/img/card-amsterdam.png" />
         <div class="card-title">Amsterdam</div>
-        <div class="card-subtitle">64 Listings</div>
+        <div class="card-subtitle">
+            <h2>Saturday, 10 October, 2017</h2>
+            <p>Time: <span>10:00 am</span></p>
+        </div>
     </ion-card>
 
     <ion-card>
@@ -34,7 +53,7 @@
     </ion-card>
 
     <ion-card>
-        <img src="assets/img/card-madison.png" />
+        <img src="http://via.placeholder.com/300x200" />
         <div class="card-title">Madison</div>
         <div class="card-subtitle">28 Listings</div>
     </ion-card>

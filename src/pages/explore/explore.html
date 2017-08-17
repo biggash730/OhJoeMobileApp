@@ -12,14 +12,73 @@
 
 </ion-header>
 
+<ion-content class="cards-bg">
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles" refreshingText="Refreshing...">
+        </ion-refresher-content>
+    </ion-refresher>
+    <ion-searchbar (ionInput)="search($event)"></ion-searchbar>
 
-<ion-content>
-    <ion-list no-lines>
-        <ion-list-header>
-            some description here
-        </ion-list-header>
-        <button ion-item *ngFor="let item of items" (click)="itemSelected(item)">
-      {{ item }}
+    <ion-list>
+        <ion-card class="adv-map">
+            <div style="position: relative; text-align: center;">
+                <img src="assets/img/advance-card-map-madison.png">
+            </div>
+            <ion-list-header>
+                <div class="card-title">
+                    Tidal Rave
+                </div>
+                <div class="card-subtitle">Biggest Beach Party In Gh</div>
+            </ion-list-header>
+            <ion-item>
+                <ion-icon color="subtle" large item-start>10</ion-icon>
+                <h2>Contacts will be there</h2>
+            </ion-item>
+            <ion-item>
+                <h2>Saturday, 10 October, 2017</h2>
+                <p>Time: <span>10:00 am</span></p>
+            </ion-item>
+            <ion-item actions>
+                <span ion-text item-start color="secondary" class="item-bold">You are going</span>
+                <button ion-button color="primary" clear item-end icon-start>
+      <ion-icon name='navigate'></ion-icon>
+      Invite Others
     </button>
+            </ion-item>
+
+        </ion-card>
+
+        <ion-card class="adv-map">
+            <div style="position: relative; text-align: center;">
+                <img src="assets/img/advance-card-map-paris.png">
+            </div>
+            <ion-list-header>
+                <div class="card-title">
+                    Chalewote
+                </div>
+                <div class="card-subtitle">Street Arts Festival</div>
+            </ion-list-header>
+            <ion-item>
+                <ion-icon color="subtle" large item-start>2</ion-icon>
+                <h2>Contacts will be there</h2>
+            </ion-item>
+            <ion-item>
+                <h2>Sunday, 31 December, 2017</h2>
+                <p>Time: <span>All Day</span></p>
+            </ion-item>
+            <ion-item actions>
+                <ion-select [(ngModel)]="status" (ionChange)="setStatus()">
+                    <ion-option value="Going">GOING</ion-option>
+                    <ion-option value="Maybe">MAYBE</ion-option>
+                    <ion-option value="NotGoing">NOT GOING</ion-option>
+                </ion-select>
+                <button ion-button color="primary" clear item-end icon-start>
+      <ion-icon name='navigate'></ion-icon>
+      Invite Others
+    </button>
+            </ion-item>
+
+        </ion-card>
     </ion-list>
+
 </ion-content>

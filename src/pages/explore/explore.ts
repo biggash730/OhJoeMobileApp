@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { LocalNotifications } from '@ionic-native/local-notifications';
+
 
 /**
  * Generated class for the ExplorePage page.
@@ -15,35 +15,37 @@ import { LocalNotifications } from '@ionic-native/local-notifications';
   templateUrl: 'explore.html',
 })
 export class ExplorePage {
-  items = [
-    'Pokémon Yellow',
-    'Super Metroid',
-    'Mega Man X',
-    'The Legend of Zelda',
-    'Pac-Man',
-    'Super Mario World',
-    'Street Fighter II',
-    'Half Life',
-    'Final Fantasy VII',
-    'Star Fox',
-    'Tetris',
-    'Donkey Kong III',
-    'GoldenEye 007',
-    'Doom',
-    'Fallout',
-    'GTA',
-    'Halo'
-  ];
-  constructor(public navCtrl: NavController, public navParams: NavParams,private localNotifications: LocalNotifications) {
+  query = '';
+  
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ExplorePage');
   }
 
-  itemSelected(item: string) {
-    console.log("Selected Item", item);
+  doRefresh(refresher) {
+      console.log('Begin async operation', refresher);
+
+      setTimeout(() => {
+          console.log('Async operation has ended');
+          refresher.complete();
+      }, 2000);
   }
+
+  search() {
+    
+    
+  }
+
+  
+
+
+
+
+
+
+
 
   /*
 

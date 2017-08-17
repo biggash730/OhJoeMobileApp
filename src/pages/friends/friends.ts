@@ -18,11 +18,11 @@ export class FriendsPage {
   allContacts: any[]
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private contacts: Contacts) {
-      contacts.find(['*'], {filter: "", multiple: true})
+      /*contacts.find(['*'], {filter: "", multiple: true})
     .then(data => {
        alert(JSON.stringify(data[0]));
       this.allContacts = data
-    });
+    });*/
   }
 
   ionViewDidLoad() {

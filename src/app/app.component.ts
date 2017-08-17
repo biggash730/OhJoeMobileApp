@@ -5,7 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { Storage } from '@ionic/storage';
 import { TabsPage } from '../pages/tabs/tabs';
 import { IntroPage } from '../pages/intro/intro';
-//import { VerifyPage } from '../pages/verify/verify';
+import { LocalNotifications } from '@ionic-native/local-notifications';
 
 import { UserDataProvider } from '../providers/user-data';
 
@@ -18,7 +18,7 @@ export class MyApp {
   rootPage;
   client  
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, public userService: UserDataProvider, public storage: Storage) {
+  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, public userService: UserDataProvider, public storage: Storage,private localNotifications: LocalNotifications) {
     platform.ready().then(() => {
       //var self = this
       // Okay, so the platform is ready and our plugins are available.

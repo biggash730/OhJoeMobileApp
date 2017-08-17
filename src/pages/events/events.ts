@@ -14,12 +14,26 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'events.html',
 })
 export class EventsPage {
-
+  query = '';
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad EventsPage');
+  }
+
+  doRefresh(refresher) {
+      console.log('Begin async operation', refresher);
+
+      setTimeout(() => {
+          console.log('Async operation has ended');
+          refresher.complete();
+      }, 2000);
+  }
+
+  search() {
+    
+    
   }
 
 }
