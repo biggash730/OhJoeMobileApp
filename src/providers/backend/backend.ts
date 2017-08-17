@@ -31,4 +31,15 @@ export class BackendProvider {
       .map(res => res.json());    
   }
 
+  getNewEvents(){
+      return this.http.get(this.userService.baseUrl+"events", {headers: this.userService.headers})
+      .map(res => res.json());    
+  }
+
+  getUserEvents(){
+      return this.http.get(this.userService.baseUrl+"userevents", {headers: this.userService.headers})
+      .map(res => res.json());    
+  }
+
+
 }
