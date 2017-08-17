@@ -37,8 +37,8 @@ export class UserDataProvider {
       //this.client = new WindowsAzure.MobileServiceClient("https://ohjoe.azurewebsites.net");
       //window.alert("MobileServiceClient instance: " + this.client);
       //console.log(this.client)
-      //this.baseUrl = "https://ohjoe.azurewebsites.net/api/";
-      this.baseUrl = "http://localhost:50776/api/";
+      this.baseUrl = "https://ohjoe.azurewebsites.net/api/";
+      //this.baseUrl = "http://localhost:50776/api/";
 
         this.headers.set('Authorization', "");
         this.headers.append('ZUMO-API-VERSION', '2.0.0');
