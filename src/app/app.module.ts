@@ -20,6 +20,7 @@ import { TermsPage } from '../pages/terms/terms';
 import { SettingsPage } from '../pages/settings/settings';
 import { ExplorePage } from '../pages/explore/explore';
 import { EventsPage } from '../pages/events/events';
+import { EventDetailsPage } from '../pages/eventdetails/eventdetails';
 import { FriendsPage } from '../pages/friends/friends';
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -38,6 +39,7 @@ import { BackendProvider } from '../providers/backend/backend';
     SettingsPage,
     ExplorePage,
     EventsPage,
+    EventDetailsPage,
     FriendsPage,
     AboutPage,
     ContactPage,
@@ -60,6 +62,7 @@ import { BackendProvider } from '../providers/backend/backend';
     SettingsPage,
     ExplorePage,
     EventsPage,
+    EventDetailsPage,
     FriendsPage,
     AboutPage,
     ContactPage,

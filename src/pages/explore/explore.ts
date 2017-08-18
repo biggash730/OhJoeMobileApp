@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,AlertController, LoadingController } from 'ionic-angular';
+import { Component} from '@angular/core';
+import { UserDataProvider } from '../../providers/user-data';
+import { BackendProvider } from '../../providers/backend/backend';
 
 
 /**
@@ -16,12 +18,14 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class ExplorePage {
   query = '';
+  events: any[]
   
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public userService: UserDataProvider, public alertCtrl: AlertController,public loadingCtrl:LoadingController, public backendService: BackendProvider) {
+    this.events = []
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ExplorePage');
+    //console.log('ionViewDidLoad ExplorePage');
   }
 
   doRefresh(refresher) {
@@ -37,6 +41,8 @@ export class ExplorePage {
     
     
   }
+
+  
 
   
 
