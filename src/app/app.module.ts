@@ -17,6 +17,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { VerifyPage } from '../pages/verify/verify';
 import { IntroPage } from '../pages/intro/intro';
 import { TermsPage } from '../pages/terms/terms';
+import { ProfilePage } from '../pages/profile/profile';
 import { SettingsPage } from '../pages/settings/settings';
 import { ExplorePage } from '../pages/explore/explore';
 import { EventsPage } from '../pages/events/events';
@@ -36,6 +37,7 @@ import { BackendProvider } from '../providers/backend/backend';
     LoginPage,
     VerifyPage,
     TabsPage,
+    ProfilePage,
     SettingsPage,
     ExplorePage,
     EventsPage,
@@ -60,6 +62,7 @@ import { BackendProvider } from '../providers/backend/backend';
     VerifyPage,
     TabsPage,
     SettingsPage,
+    ProfilePage,
     ExplorePage,
     EventsPage,
     EventDetailsPage,

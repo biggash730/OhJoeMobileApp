@@ -5,11 +5,23 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
     <ion-navbar>
         <ion-title>Explore</ion-title>
+        <ion-buttons end>
+            <button (click)="search()" ion-button icon-only clear id="notification-button">
+                <ion-icon name="notifications">
+                    <ion-badge id="notifications-badge" color="danger">5</ion-badge>
+                </ion-icon>
+                <!--<ion-badge color="danger">26</ion-badge>-->
+            </button>
+
+        </ion-buttons>
     </ion-navbar>
 
+    <ion-toolbar>
+        <ion-searchbar primary [(ngModel)]="query" (ionInput)="search()" placeholder="Search Events">
+        </ion-searchbar>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content class="cards-bg">
@@ -17,8 +29,6 @@
         <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles" refreshingText="Refreshing...">
         </ion-refresher-content>
     </ion-refresher>
-    <ion-searchbar primary [(ngModel)]="query" (ionInput)="search()" placeholder="Search Events">
-    </ion-searchbar>
 
     <ion-list>
         <ion-card class="adv-map">

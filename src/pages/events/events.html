@@ -9,7 +9,10 @@
     <ion-navbar>
         <ion-title>Featured Events</ion-title>
     </ion-navbar>
-
+    <ion-toolbar>
+        <ion-searchbar primary [(ngModel)]="query" (ionInput)="search()" placeholder="Search Events">
+        </ion-searchbar>
+    </ion-toolbar>
 </ion-header>
 
 
@@ -18,10 +21,8 @@
         <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles" refreshingText="Refreshing...">
         </ion-refresher-content>
     </ion-refresher>
-    <ion-searchbar primary [(ngModel)]="query" (ionInput)="search()" placeholder="Search Events">
-    </ion-searchbar>
     <ion-list>
-        <ion-card *ngFor="let event of events">
+        <ion-card *ngFor="let event of events" (click)="goToEventDetails(event)">
             <img src="{{event.image}}" />
             <ion-fab right top>
                 <button ion-fab mini color="light" (click)="goToEventDetails(event)">

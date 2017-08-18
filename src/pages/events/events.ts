@@ -21,10 +21,11 @@ export class EventsPage {
   events = <any>[]
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public userService: UserDataProvider, public alertCtrl: AlertController,public loadingCtrl:LoadingController, public backendService: BackendProvider) {
+    console.log('EventsPage');
   }
 
   ionViewDidLoad() {
-    //console.log('ionViewDidLoad EventsPage');
+    console.log('ionViewDidLoad EventsPage');
     this.getEvents()
   }
 
