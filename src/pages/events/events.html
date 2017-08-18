@@ -21,43 +21,28 @@
     <ion-searchbar primary [(ngModel)]="query" (ionInput)="search()" placeholder="Search Events">
     </ion-searchbar>
     <ion-list>
-        <ion-card>
-            <img src="assets/img/card-saopaolo.png" />
+        <ion-card *ngFor="let event of events">
+            <img src="{{event.image}}" />
             <ion-fab right top>
                 <button ion-fab mini color="light" (click)="goToEventDetails(event)">
         <ion-icon name="eye" color="red"></ion-icon>
       </button>
             </ion-fab>
             <div class="card-title">
-                Tidal Rave
+                {{event.title}}
             </div>
-            <div class="card-subtitle">Biggest Beach Party In Gh</div>
+            <div class="card-subtitle">{{event.tagline}}</div>
             <ion-item>
-                <h2>Saturday, 10 October, 2017</h2>
-                <p>Time: <span>10:00 am</span></p>
+                <p>{{event.location}}</p>
+            </ion-item>
+            <ion-item>
+                <h2>{{event.date | date:'fullDate'}}</h2>
+                <p [hidden]="event.allDay">Time: <span>{{event.startTime | date:'h:mma'}}</span> - <span>{{event.endTime | date:'h:mma'}}</span></p>
+                <p [hidden]="!event.allDay">Time: All Day</p>
             </ion-item>
         </ion-card>
 
-        <ion-card>
-            <img src="assets/img/card-amsterdam.png" />
-            <div class="card-title">Amsterdam</div>
-            <div class="card-subtitle">
-                <h2>Saturday, 10 October, 2017</h2>
-                <p>Time: <span>10:00 am</span></p>
-            </div>
-        </ion-card>
 
-        <ion-card>
-            <img src="assets/img/card-sf.png" />
-            <div class="card-title">San Francisco</div>
-            <div class="card-subtitle">72 Listings</div>
-        </ion-card>
-
-        <ion-card>
-            <img src="http://via.placeholder.com/300x200" />
-            <div class="card-title">Madison</div>
-            <div class="card-subtitle">28 Listings</div>
-        </ion-card>
     </ion-list>
     <ion-list-header [hidden]="events.length > 0">
         No Events Found

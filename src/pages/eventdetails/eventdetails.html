@@ -16,28 +16,40 @@
 <ion-content>
     <ion-card class="adv-map">
         <div style="position: relative; text-align: center;">
-            <img src="assets/img/advance-card-map-paris.png">
+            <img src="{{event.image}}">
         </div>
         <ion-list-header>
             <div class="card-title">
-                Chalewote
+                {{event.title}}
             </div>
-            <div class="card-subtitle">Street Arts Festival</div>
+            <div class="card-subtitle">
+                {{event.tagline}}
+            </div>
+            <p style=" text-align: center;">{{event.location}}</p>
         </ion-list-header>
         <ion-item>
             <ion-icon color="subtle" large item-start>2</ion-icon>
             <h2>Contacts will be there</h2>
         </ion-item>
         <ion-item>
-            <h2>Sunday, 31 December, 2017</h2>
-            <p>Time: <span>All Day</span></p>
+            <h2>{{event.date | date:'fullDate'}}</h2>
+            <p [hidden]="event.allDay">Time: <span>{{event.startTime | date:'h:mma'}}</span> - <span>{{event.endTime | date:'h:mma'}}</span></p>
+            <p [hidden]="!event.allDay">Time: All Day</p>
+        </ion-item>
+        <ion-item>
+            <ion-segment [(ngModel)]="status" color="primary" (ionChange)="changeStatus($event)">
+                <ion-segment-button value="going">
+                    Going
+                </ion-segment-button>
+                <ion-segment-button value="maybe">
+                    Maybe
+                </ion-segment-button>
+                <ion-segment-button value="notGoing">
+                    Not Going
+                </ion-segment-button>
+            </ion-segment>
         </ion-item>
         <ion-item actions>
-            <ion-select [(ngModel)]="status" (ionChange)="setStatus()">
-                <ion-option value="Going">GOING</ion-option>
-                <ion-option value="Maybe">MAYBE</ion-option>
-                <ion-option value="NotGoing">NOT GOING</ion-option>
-            </ion-select>
             <button ion-button color="primary" clear item-end icon-start>
       <ion-icon name='navigate'></ion-icon>
       Invite Others
