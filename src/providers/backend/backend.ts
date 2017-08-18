@@ -3,6 +3,10 @@ import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { UserDataProvider } from '../../providers/user-data';
 
+import { File } from '@ionic-native/file';
+import { FileChooser } from '@ionic-native/file-chooser';
+import { FilePath } from '@ionic-native/file-path';
+
 /*
   Generated class for the BackendProvider provider.
 
@@ -12,7 +16,8 @@ import { UserDataProvider } from '../../providers/user-data';
 @Injectable()
 export class BackendProvider {
 
-  constructor(public http: Http,public userService: UserDataProvider) {
+    nativepath: any;
+  constructor(public http: Http,public userService: UserDataProvider,public filechooser: FileChooser) {
     //console.log('Hello BackendProvider Provider');
   }
 
@@ -39,6 +44,36 @@ export class BackendProvider {
   getUserEvents(){
       return this.http.get(this.userService.baseUrl+"userevents", {headers: this.userService.headers})
       .map(res => res.json());    
+  }
+
+  uploadimage() {
+    var promise = new Promise((resolve, reject) => {
+        this.filechooser.open().then((url) => {
+          (<any>window).FilePath.resolveNativePath(url, (result) => {
+            this.nativepath = result;
+            (<any>window).resolveLocalFileSystemURL(this.nativepath, (res) => {
+              res.file((resFile) => {
+                var reader = new FileReader();
+                reader.readAsArrayBuffer(resFile);
+                reader.onloadend = (evt: any) => {
+                  var imgBlob = new Blob([evt.target.result], { type: 'image/jpeg' });
+                  //var imageStore = this.firestore.ref('/profileimages').child(firebase.auth().currentUser.uid);
+                  /*imageStore.put(imgBlob).then((res) => {
+                    this.firestore.ref('/profileimages').child(firebase.auth().currentUser.uid).getDownloadURL().then((url) => {
+                      resolve(url);
+                    }).catch((err) => {
+                        reject(err);
+                    })
+                  }).catch((err) => {
+                    reject(err);
+                  })*/
+                }
+              })
+            })
+          })
+      })
+    })    
+     return promise;   
   }
 
 

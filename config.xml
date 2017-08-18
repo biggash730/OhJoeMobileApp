@@ -89,4 +89,7 @@
     <allow-navigation href="http://192.168.137.1:8101" />
     <plugin name="cordova-plugin-contacts" spec="~2.0.1" />
     <plugin name="de.appplant.cordova.plugin.local-notification" spec="^0.8.5" />
+    <plugin name="cordova-plugin-file" spec="^4.3.3" />
+    <plugin name="cordova-plugin-filechooser" spec="^1.0.1" />
+    <plugin name="cordova-plugin-filepath" spec="^1.0.2" />
 </widget>

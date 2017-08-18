@@ -5,6 +5,9 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { IonicStorageModule} from '@ionic/storage';
 import { Contacts } from '@ionic-native/contacts';
 import { LocalNotifications } from '@ionic-native/local-notifications';
+import { File } from '@ionic-native/file';
+import { FileChooser } from '@ionic-native/file-chooser';
+import { FilePath } from '@ionic-native/file-path';
 import { HttpModule } from '@angular/http';
 
 import { MyApp } from './app.component';
@@ -78,7 +81,10 @@ import { BackendProvider } from '../providers/backend/backend';
     UserDataProvider,
     BackendProvider,
     Contacts,
-    LocalNotifications
+    LocalNotifications,
+    File,
+    FileChooser,
+    FilePath
   ]
 })
 export class AppModule {}

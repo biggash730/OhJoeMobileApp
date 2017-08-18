@@ -5,14 +5,43 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
-  <ion-navbar>
-    <ion-title>profile</ion-title>
-  </ion-navbar>
-
+    <ion-navbar>
+        <ion-title>Profile</ion-title>
+        <ion-buttons end>
+            <button (click)="openSettings()" ion-button icon-only clear>
+                <ion-icon name="settings" color="dark">
+                </ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
 </ion-header>
 
 
-<ion-content padding>
+<ion-content class="home">
+    <div class="profile-image">
+        <img src="assets/img/advance-card-map-madison.png">
+    </div>
+    <div>
+        <button ion-button round outline (click)="chooseimage()">Choose an image</button>
+    </div>
+    <ion-item-divider color="light"></ion-item-divider>
+    <ion-item>
+        <ion-icon color="secondary" item-start name="happy"></ion-icon>
+        <h2>Name here</h2>
+        <ion-icon color="dark" item-end name="create"></ion-icon>
+    </ion-item>
+    <ion-item-divider color="light"></ion-item-divider>
+    <ion-item>
+        <ion-icon color="default" large item-start name="call"></ion-icon>
+        <h2>Phone Number</h2>
+    </ion-item>
+    <ion-item>
+        <ion-icon color="subtle" item-start name="locate"></ion-icon>
+        <p>Country</p>
+    </ion-item>
+    <ion-item>
+        <ion-icon color="dark" item-start name="calendar"></ion-icon>
+        <p>date registered</p>
+    </ion-item>
 
 </ion-content>
