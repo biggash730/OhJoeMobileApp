@@ -32,6 +32,14 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { UserDataProvider } from '../providers/user-data';
 import { BackendProvider } from '../providers/backend/backend';
 
+declare var window;
+
+export class MyErrorHandler implements ErrorHandler {
+  handleError(err: any): void {
+    window.Ionic.handleNewError(err);
+  }
+}
+
 @NgModule({
   declarations: [
     MyApp,
@@ -84,7 +92,10 @@ import { BackendProvider } from '../providers/backend/backend';
     LocalNotifications,
     File,
     FileChooser,
-    FilePath
+    FilePath,
+    //[{ provide: ErrorHandler, useClass: MyErrorHandler }] // This line
   ]
 })
 export class AppModule {}
+
+
